@@ -14,11 +14,19 @@ class Note extends Component {
 
   // deleting note
   removeNote = () => {
-    this.props.onDelete(this.props.note.id);
+    this.props.onDelete(this.props.id);
   }
 
   handleDrag = (e, data) => {
-    this.props.onUpdate(this.props.note.title, this.props.note.text, data.x, data.y, this.props.note.id);
+    const fields = {
+      title: this.props.note.title,
+      text: this.props.note.text,
+      x: data.x,
+      y: data.y,
+    };
+    console.log('inside handle drag');
+    console.log(fields);
+    this.props.onUpdate(this.props.id, fields);
   };
 
   // next couple are for editing button
@@ -35,11 +43,29 @@ class Note extends Component {
   }
 
   changeTitle = (event) => {
-    this.props.onUpdate(event.target.value, this.props.note.text, this.props.note.x, this.props.note.y, this.props.note.id);
+    // this.props.onUpdate(event.target.value, this.props.note.text, this.props.note.x, this.props.note.y, this.props.id);
+
+    const fields = {
+      title: event.target.value,
+      text: this.props.note.text,
+      x: this.props.note.x,
+      y: this.props.note.y,
+    };
+
+    this.props.onUpdate(this.props.id, fields);
   }
 
   changeContent = (event) => {
-    this.props.onUpdate(this.props.note.title, event.target.value, this.props.note.x, this.props.note.y, this.props.note.id);
+    // this.props.onUpdate(this.props.note.title, event.target.value, this.props.note.x, this.props.note.y, this.props.id);
+
+    const fields = {
+      title: this.props.note.title,
+      text: event.target.value,
+      x: this.props.note.x,
+      y: this.props.note.y,
+    };
+
+    this.props.onUpdate(this.props.id, fields);
   }
 
   renderTopBar = () => {

@@ -1,22 +1,35 @@
 import firebase from 'firebase';
 
-/* <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script> */
-
 // Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyAzQ1eMg7GlyJGuKXMxTkxItXYQUA5uZ7g",
-    authDomain: "firenotes-7f55e.firebaseapp.com",
-    databaseURL: "https://firenotes-7f55e.firebaseio.com",
-    projectId: "firenotes-7f55e",
-    storageBucket: "firenotes-7f55e.appspot.com",
-    messagingSenderId: "311596311079",
-    appId: "1:311596311079:web:a7b38a3357e17c490b2402"
+const firebaseConfig = {
+  apiKey: 'AIzaSyAzQ1eMg7GlyJGuKXMxTkxItXYQUA5uZ7g',
+  authDomain: 'firenotes-7f55e.firebaseapp.com',
+  databaseURL: 'https://firenotes-7f55e.firebaseio.com',
+  projectId: 'firenotes-7f55e',
+  storageBucket: 'firenotes-7f55e.appspot.com',
+  messagingSenderId: '311596311079',
+  appId: '1:311596311079:web:a7b38a3357e17c490b2402',
 };
 
-export function fetchNotes(callback) { 
-    //do something here
-    //callback() when done
-  }
+export function fetchNotes(callback) {
+// do something here
+  firebase.database().ref('notes').on('value', (snapshot) => {
+    const newNoteState = snapshot.val();
+    callback(newNoteState);
+  });
+}
+
+export function deleteNote(id) {
+  firebase.database().ref('notes').child(id).remove();
+}
+
+export function updateNote(id, fields) {
+  firebase.database().ref('notes').child(id).update(fields);
+}
+
+export function addNote(newNote) {
+  firebase.database().ref('notes').push(newNote);
+}
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
