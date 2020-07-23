@@ -14,10 +14,10 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-export function fetchNotes(fetchCallback) {
+export function fetchNotes(callback) {
   firebase.database().ref('notes').on('value', (snapshot) => {
     const newNoteState = snapshot.val();
-    fetchCallback(newNoteState);
+    callback(newNoteState);
   });
 }
 

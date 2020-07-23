@@ -21,7 +21,7 @@ class App extends Component {
   componentDidMount = () => {
     db.fetchNotes(this.getNote);
 
-    this.setState({ notes: new Immutable.Map() });
+    // this.setState({ notes: new Immutable.Map() });
   }
 
   getNote = (newNotes) => {
