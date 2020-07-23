@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import Map from 'immutable';
+import { Map } from 'immutable';
 import './style.scss';
 import SearchBar from './components/search_bar';
 import Note from './components/note';
@@ -26,15 +26,14 @@ class App extends Component {
 
   getNote = (newNotes) => {
     let newMax = 0;
-    if (newNotes !== undefined) {
+    // eslint-disable-next-line eqeqeq
+    if (newNotes != undefined) {
       Object.keys(newNotes).forEach((key) => {
         if (newNotes[key].zIndex > newMax) {
           newMax = newNotes[key].zIndex;
         }
       });
     }
-    console.log('running getNote');
-    console.log(newMax);
 
     // eslint-disable-next-line new-cap
     this.setState({ notes: Map(newNotes), maxZ: newMax + 1 });
@@ -55,14 +54,10 @@ class App extends Component {
       zIndex: 0,
     };
 
-    /* this.setState((prevState) => ({
-      notes: prevState.notes.set(i, object),
-    })); */
-
     db.addNote(object);
 
-    /* this.setState((prevstate) => ({
-      maxZ: prevstate.maxZ + 1,
+    /* this.setState((prevState) => ({
+      notes: prevState.notes.set(i, object),
     })); */
   }
 
@@ -72,6 +67,7 @@ class App extends Component {
       notes: prevState.notes.delete(id),
     })); */
 
+    console.log('deleting note');
     db.deleteNote(id);
   }
 
@@ -115,8 +111,6 @@ class App extends Component {
         </li>
       );
     }) : null;
-
-    console.log(this.state.notes);
 
     return (
       <div>
