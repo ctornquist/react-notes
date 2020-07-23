@@ -1,7 +1,7 @@
 /* eslint-disable lines-between-class-members */
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import Immutable from 'immutable';
+import Map from 'immutable';
 import './style.scss';
 import SearchBar from './components/search_bar';
 import Note from './components/note';
@@ -35,6 +35,7 @@ class App extends Component {
     }
     console.log('running getNote');
     console.log(newMax);
+
     // eslint-disable-next-line new-cap
     this.setState({ notes: Map(newNotes), maxZ: newMax + 1 });
 
