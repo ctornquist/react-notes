@@ -23,11 +23,24 @@ class Note extends Component {
       text: this.props.note.text,
       x: data.x,
       y: data.y,
+      zIndex: this.props.note.zIndex,
     };
-    console.log('inside handle drag');
-    console.log(fields);
+
     this.props.onUpdate(this.props.id, fields);
   };
+
+  handleStartDrag = (e, data) => {
+    const fields = {
+      title: this.props.note.title,
+      text: this.props.note.text,
+      x: data.x,
+      y: data.y,
+      zIndex: this.props.maxZ + 1,
+    };
+
+    this.props.onUpdate(this.props.id, fields);
+    this.props.incZ();
+  }
 
   // next couple are for editing button
   startEdit = () => {
@@ -50,6 +63,7 @@ class Note extends Component {
       text: this.props.note.text,
       x: this.props.note.x,
       y: this.props.note.y,
+      zIndex: this.props.note.zIndex,
     };
 
     this.props.onUpdate(this.props.id, fields);
@@ -63,6 +77,7 @@ class Note extends Component {
       text: event.target.value,
       x: this.props.note.x,
       y: this.props.note.y,
+      zIndex: this.props.note.zIndex,
     };
 
     this.props.onUpdate(this.props.id, fields);
@@ -116,11 +131,12 @@ class Note extends Component {
         grid={[1, 1]}
         defaultPosition={{ x: 20, y: 20 }}
         position={{
-          x: this.props.note.x, y: this.props.note.y, width: 150, height: 200,
+          x: this.props.note.x, y: this.props.note.y,
         }}
         onDrag={this.handleDrag}
+        onStart={this.handleStartDrag}
       >
-        <div className="item">
+        <div className="item" style={{ zIndex: this.props.note.zIndex }}>
           {this.renderTopBar()}
           {this.renderContent()}
         </div>

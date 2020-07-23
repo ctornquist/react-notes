@@ -11,11 +11,13 @@ const firebaseConfig = {
   appId: '1:311596311079:web:a7b38a3357e17c490b2402',
 };
 
-export function fetchNotes(callback) {
-// do something here
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+export function fetchNotes(fetchCallback) {
   firebase.database().ref('notes').on('value', (snapshot) => {
     const newNoteState = snapshot.val();
-    callback(newNoteState);
+    fetchCallback(newNoteState);
   });
 }
 
@@ -30,6 +32,3 @@ export function updateNote(id, fields) {
 export function addNote(newNote) {
   firebase.database().ref('notes').push(newNote);
 }
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);

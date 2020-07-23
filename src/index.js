@@ -13,14 +13,35 @@ class App extends Component {
 
     this.state = {
       notes: null,
+      maxZ: 0,
     };
   }
 
   // runs right after the constructor
   componentDidMount = () => {
-    db.fetchNotes((notes) => {
-      this.setState({ notes: new Immutable.Map(notes) });
-    });
+    db.fetchNotes(this.getNote);
+
+    this.setState({ notes: new Immutable.Map() });
+  }
+
+  getNote = (newNotes) => {
+    let newMax = 0;
+    if (newNotes !== undefined) {
+      Object.keys(newNotes).forEach((key) => {
+        if (newNotes[key].zIndex > newMax) {
+          newMax = newNotes[key].zIndex;
+        }
+      });
+    }
+    console.log('running getNote');
+    console.log(newMax);
+    // eslint-disable-next-line new-cap
+    this.setState({ notes: Map(newNotes), maxZ: newMax + 1 });
+
+    /* this.setState({
+      // eslint-disable-next-line new-cap
+      notes: new Map(newNotes),
+    }); */
   }
 
   // callback function to add to map
@@ -30,6 +51,7 @@ class App extends Component {
       text: ' ',
       x: newX,
       y: newY,
+      zIndex: 0,
     };
 
     /* this.setState((prevState) => ({
@@ -37,6 +59,10 @@ class App extends Component {
     })); */
 
     db.addNote(object);
+
+    /* this.setState((prevstate) => ({
+      maxZ: prevstate.maxZ + 1,
+    })); */
   }
 
   // callback function to delete from map
@@ -66,17 +92,27 @@ class App extends Component {
     db.updateNote(id, fields);
   }
 
-  getNote = (newNotes) => {
-    this.setState({
-      // eslint-disable-next-line new-cap
-      notes: new Map(newNotes),
-    });
+  increaseZ = () => {
+    this.setState((prevstate) => ({
+      maxZ: prevstate.maxZ + 1,
+    }));
   }
 
   render() {
     // if notes isn't undefined, render each note in the map
     const renderNotes = this.state.notes !== null ? this.state.notes.entrySeq().map(([id, note]) => {
-      return <li><Note onUpdate={this.updateNote} onDelete={this.deleteNote} key={id} id={id} note={note} /></li>;
+      return (
+        <li key={id}> <Note
+          onUpdate={this.updateNote}
+          onDelete={this.deleteNote}
+          incZ={this.increaseZ}
+          key={id}
+          id={id}
+          note={note}
+          maxZ={this.state.maxZ}
+        />
+        </li>
+      );
     }) : null;
 
     console.log(this.state.notes);
