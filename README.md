@@ -10,5 +10,6 @@ I like the styling a lot, the dragging is smooth, you can edit the text and titl
 
 ## What Didn't
 The markdown thing works but I couldn't figure out how to make large images smaller, so you have to use an "icon" size image to see the whole thing. 
+Also the notes spawn on top of one another, so if you create a bunch you have to move them around to see all of them. 
 
 ## Screenshots
