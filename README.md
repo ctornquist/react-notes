@@ -4,6 +4,7 @@ This is a simple sticky notes style app I made using React and Bootstrap. It use
 
 ## To View
 The app is hosted on surge using this link: [ct-cs52-reactnotes.surge.sh](ct-cs52-reactnotes.surge.sh)
+^link is weird oh gh so might have to copy/paste
 
 To view in local development environment:
 1. yarn install
