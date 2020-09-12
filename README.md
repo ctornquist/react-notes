@@ -1,14 +1,10 @@
-# Title
+# React Notes
+ 
+This is a simple sticky notes style app I made using React and Bootstrap and Firebase for persistent data storage and real time updates across users. A cool feature is that the notes will pop to the front when you click on them, and they are full draggable. 
 
-React Notes
-EC: I did the extra credit where when you click a note it jumps to the front by incrementing the Z index. 
+## To View
+The app is hosted on surge using this link: ct-cs52-reactnotes.surge.sh 
 
-link: ct-cs52-reactnotes.surge.sh 
-
-## What Worked Well
-I like the styling a lot, the dragging is smooth, you can edit the text and title. It will work in realtime across multiple screens pretty well. I like the "jump to front" thing also. 
-
-## What Didn't
-The markdown thing works but I couldn't figure out how to make large images smaller, so you have to use an "icon" size image to see the whole thing. 
-
-## Screenshots
+To view in local development environment:
+1. yarn install
+2. yarn start

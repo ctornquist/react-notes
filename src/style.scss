@@ -7,6 +7,7 @@ html{
 body, html {
   font-family: "Roboto", sans-serif;
   height: 100%;
+  background-image: url(https://images.unsplash.com/photo-1558051815-0f18e64e6280?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80);
 }
 
 ul {
@@ -23,13 +24,12 @@ li {
   position: absolute;
   top: 15px;
   border-width: 10px;
-  border-color: rgb(92, 88, 88);
-  height: 30px;
+  height: 40px;
   
   input {
     width: 400px;
+    height: 100%;
     border-width: 2px;
-    border-color: rgb(92, 88, 88);
   }
 
   button{
@@ -40,7 +40,8 @@ li {
 
     border-width: 0;
     width: 70px;
-    background-color: rgb(92, 88, 88);
+    height: 100%;
+    background-color: rgb(68, 181, 233);
     color: rgb(255, 255, 255);
   }
 }
@@ -57,11 +58,8 @@ h3 {
   min-width: 300px;
   max-width: 400px;
   margin: 0px;
-  background-color: rgb(255, 192, 203);
-  border-style: solid;
-  border-color: rgb(92, 88, 88);
-  border-width: 2px;
   position: absolute;
+  box-shadow: 5px 5px 8px rgb(63, 56, 56);
   
 
   .topBar{
@@ -69,9 +67,10 @@ h3 {
     flex-direction: row;
     align-items: center;
     padding: 5px;
+    background-color: rgb(68, 181, 233);
   }
 
-  .editors{
+  .editors {
     display: flex;
     justify-content: flex-end;
   }
@@ -79,24 +78,27 @@ h3 {
   button {
     border-width: 0;
     margin: 3px;
-    background-color: pink;
+    background-color:rgb(68, 181, 233);;
   }
 
   #dragger{
     margin: 3px;
     padding: 3px;
-    background-color: pink;
+    background-color: rgb(68, 181, 233);
   }
 
   .content{
     padding: 5px;
+    background-color: white;
+    min-height: 80px;
   }
 
   #inputContent {
     line-height: 100%;
     width: 90%;
     margin: 5px;
-    border-width: 0px;
+    border-width: 1px;
+    border-color: gray;
     border-radius: 2px;
   }
 
@@ -105,5 +107,7 @@ h3 {
     line-height: 100%;
     border-width: 0px;
     border-radius: 2px;
+    border-width: 1px;
+    border-color: gray;
   }
 }
